@@ -1,17 +1,17 @@
 # == Schema Information
 #
-# Table name: tweets
+# Table name: users
 #
 #  id         :bigint           not null, primary key
-#  image      :text(65535)
+#  email      :string(255)
 #  name       :string(255)
-#  text       :string(255)
+#  uid        :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 require "test_helper"
 
-class TweetTest < ActiveSupport::TestCase
+class UserTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
