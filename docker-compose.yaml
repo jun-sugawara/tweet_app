@@ -9,7 +9,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./api:/app
+      - ./api:/app:cached
       - bundle:/usr/local/bundle
     tty: true
     stdin_open: true
@@ -24,12 +24,14 @@ services:
   front:
     build: ./front
     volumes:
-      - ./front:/tweetapp
+      - ./front:/app:cached
     ports:
-      - '8080:8080'
+      - 8080:3000
     tty: true
     stdin_open: true
-    command: npm run serve
+    command: yarn dev
+    depends_on:
+      - web
 
 volumes:
   mysql_data:

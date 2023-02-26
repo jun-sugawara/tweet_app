@@ -1,9 +1,15 @@
 FROM node:16.10.0-alpine
 
-ENV APP_HOME /tweetapp
-RUN mkdir -p $APP_HOME
-WORKDIR $APP_HOME
+ENV HOME="/app" \
+    LANG=C.UTF-8 \
+    TZ=Asia/Tokyo
 
-RUN apk update && npm install -g @vue/cli
-COPY package.json .
-RUN npm install
+ENV HOST 0.0.0.0
+
+WORKDIR ${HOME}
+
+RUN apk update && \
+    apk upgrade && \
+    npm install -g n && \
+    yarn install &&\
+    rm -rf /var/cache/apk/*
